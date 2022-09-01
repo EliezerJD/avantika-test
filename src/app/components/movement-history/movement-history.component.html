@@ -1,0 +1,34 @@
+<div class="container-xxl flex-grow-1 container-p-y" >
+  <!-- Hoverable Table rows -->
+  <div class="card">
+    <h5 class="card-header">Historial de transacciones</h5>
+    <div class="table-responsive text-nowrap">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th class="small">Usuario</th>
+            <th class="small">No de cuenta</th>
+            <th>Monto</th>
+            <th>Tipo</th>
+            <th>Terminal</th>
+            <th>Ultima Actividad</th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          <tr *ngFor='let rec of record.reverse()'>
+            <td class="small">{{rec.usuario || '-'}}</td>
+            <td class="small">{{rec.numeroCuenta || '-'}}</td>
+            <td>${{rec.monto || '0'}}</td>
+            <td>{{rec.terminal || '-'}}</td>
+            <td [ngSwitch]="rec.tipo">
+              <span *ngSwitchCase="'Deposito'" class="badge bg-label-success me-1">{{rec.tipo}}</span>
+              <span *ngSwitchCase="'Retiro'" class="badge bg-label-warning me-1">{{rec.tipo}}</span>
+              <span *ngSwitchDefault class="badge bg-label-primary me-1">{{rec.tipo || '-'}}</span>
+            </td>
+            <td>{{rec.fechaUltimaAct || '-'}}</td>
+          </tr> 
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
