@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   AUTH_URL: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyB-p8CKoaQr097NJ8YJRpoWpezJj5xRRUI',
+  USER_SECRET_KEY: 'пользователь',
 };
 
 /*
