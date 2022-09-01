@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   AUTH_URL: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyB-p8CKoaQr097NJ8YJRpoWpezJj5xRRUI',
+  SAVINGS_ACCOUNTS_URL: 'https://mibanco-333616-default-rtdb.firebaseio.com/cuentaAhorro/OcBMnUGvAqVlUOskPph6ZIDpDqj2.json?auth=',
+  RECORDS_URL: 'https://mibanco-333616-default-rtdb.firebaseio.com/transacciones/OcBMnUGvAqVlUOskPph6ZIDpDqj2.json?auth=',
   USER_SECRET_KEY: 'пользователь',
 };
 

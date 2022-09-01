@@ -8,12 +8,16 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule} from "@angular/common/http";
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SavingsAccountsComponent } from './components/savings-accounts/savings-accounts.component';
+import { MovementHistoryComponent } from './components/movement-history/movement-history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    SavingsAccountsComponent,
+    MovementHistoryComponent
   ],
   imports: [
     BrowserModule,
