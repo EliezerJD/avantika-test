@@ -3,6 +3,8 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -15,20 +17,21 @@ export class LoginComponent implements OnInit {
     password:['',[Validators.required]]
   });
 
-  constructor(private fb: FormBuilder, private auth: AuthService) { }
+  constructor(private fb: FormBuilder, private auth: AuthService, private router:Router) { }
 
   ngOnInit(): void {
 
   }
 
   async login(){
-    if(!this.loginForm.valid)return;
+    //if(!this.loginForm.valid)return;
     const data = this.loginForm.value;
     await this.auth.login(data.email, data.password).subscribe(res => {
-      //guardar token y redirigir a inicio
+      sessionStorage.setItem(environment.USER_SECRET_KEY, JSON.stringify(res));
+      this.router.navigate(['/dashboard']);
     },
     e=> {
-      Swal.fire('Oops', e.error.error.message.toString(), 'error');
+      Swal.fire('Ups, algo ha pasado!', e.error.error.message.toString(), 'error');
     });
   }
 
