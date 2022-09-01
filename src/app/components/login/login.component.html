@@ -5,22 +5,25 @@
         	<div class="card">
             	<div class="card-body">
               		<h4 class="mb-2">Login - Avantika Test! 👋</h4>
-              		<p class="mb-4">Por favor ingresa tu usuario y contraseña</p>
-              		<form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+              		<p class="mb-4">Por favor ingresa tu correo electrónico y contraseña</p>
+              		<form id="formAuthentication" class="mb-3" [formGroup]="loginForm">
                 		<div class="mb-3">
 	                  		<label for="email" class="form-label">Correo electrónico</label>
-	                  		<input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" autofocus />
+	                  		<input formControlName="email" type="text" class="form-control" id="email" name="email-username" placeholder="Correo electrónico"/>
+                    		<div class="error" *ngIf="!loginForm.get('email')!.hasError('required') && loginForm.get('email')!.hasError('email')">
+                        		Ingresa un correo valido
+                   			</div>
                 		</div>
                 		<div class="mb-3 form-password-toggle">
                   			<div class="d-flex justify-content-between">
                     			<label class="form-label" for="password">Contraseña</label>
                   			</div>
                   			<div class="input-group input-group-merge">
-                    			<input type="password" class="form-control"/>
+                    			<input formControlName="password" type="password" class="form-control" placeholder="Contraseña" />
                   			</div>
                 		</div>
                 		<div class="mb-3">
-                  			<button class="btn btn-primary d-grid w-100" type="submit">Iniciar sesión</button>
+                  			<button class="btn btn-primary d-grid w-100" (click)="login()" [disabled]="loginForm.invalid">Iniciar sesión</button>
                 		</div>
               		</form>
             	</div>
