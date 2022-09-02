@@ -1,0 +1,75 @@
+<div class="container-xxl flex-grow-1 container-p-y" >
+  <!-- Hoverable Table rows -->
+  <div class="card">
+    <h5 class="card-header">Clientes <button class="btn rounded-pill btn-success left" (click)="open(addClient)">Agregar cliente</button></h5>
+    <div class="table-responsive text-nowrap">
+      <table class="table table-hover center">
+        <thead>
+          <tr>
+            <th>ID Cliente</th>
+            <th>Nombre</th>
+            <th>Direccion</th>
+            <th>Edad</th>
+            <th>Genero</th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          <tr *ngFor='let client of clients.reverse()'>
+            <td>{{client.idCliente || '-'}}</td>
+            <td>{{client.nombre || '-'}}</td>
+            <td>{{client.direccion || '-'}}</td>
+            <td>{{client.edad || '-'}}</td>
+            <td>{{client.genero || '-'}}</td>
+          </tr> 
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<ng-template #addClient let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Crear cuenta de ahorro</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body" style="text-align: center">
+    <form [formGroup]="addClientForm">
+      <div class="d-flex justify-content-between">
+        <label class="form-label" for="id-cliente">Nombre completo</label>
+      </div>
+      <div class="input-group input-group-merge">
+        <input formControlName="nombre" type="text" class="form-control"/>
+      </div>
+      <div class="d-flex justify-content-between fix">
+        <label class="form-label" for="id-cliente">Id Cliente</label>
+      </div>
+      <div class="input-group input-group-merge">
+        <input formControlName="idCliente" type="text" class="form-control"/>
+      </div>
+      <div class="d-flex justify-content-between fix">
+        <label class="form-label" for="id-cliente">Dirección</label>
+      </div>
+      <div class="input-group input-group-merge">
+        <input formControlName="direccion" type="text" class="form-control"/>
+      </div>
+      <div class="d-flex justify-content-between fix">
+        <label class="form-label" for="id-cliente">Edad</label>
+      </div>
+      <div class="input-group input-group-merge">
+        <input formControlName="edad" type="number" class="form-control"/>
+      </div>
+      <div class="d-flex justify-content-between fix">
+        <label class="form-label" for="id-cliente">Género</label>
+      </div>
+      <div class="input-group input-group-merge">
+        <select class="form-select" formControlName="genero">
+          <option value="Masculino">Masculino</option>
+          <option value="Femenino">Femenino</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-success" (click)="modal.close('Save click')" [disabled]="addClientForm.invalid">Agregar</button>
+  </div>
+</ng-template>

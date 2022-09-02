@@ -6,17 +6,33 @@ import { HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class DeliveryService {
-
-  constructor(private http: HttpClient) { }
+  data:any = [];
+  constructor(private http: HttpClient) {
+    this.data = JSON.parse(sessionStorage.getItem(environment.USER_SECRET_KEY) || '{}');
+  }
 
   getSavingsAccounts(){
-    var data = JSON.parse(sessionStorage.getItem(environment.USER_SECRET_KEY) || '{}');
-    return this.http.get(environment.SAVINGS_ACCOUNTS_URL + data.idToken);
+    return this.http.get(environment.ACCOUNTS_URL + this.data.idToken);
   }
 
   getRecords(){
-    var data = JSON.parse(sessionStorage.getItem(environment.USER_SECRET_KEY) || '{}');
-    return this.http.get(environment.RECORDS_URL + data.idToken);
+    return this.http.get(environment.RECORDS_URL + this.data.idToken);
+  }
+
+  addRecord(data:any){
+    return this.http.post(environment.RECORDS_URL + this.data.idToken, {usuario:data.usuario, numeroCuenta:data.numeroCuenta, monto:data.monto, terminal: data.terminal, tipo:data.tipo, fechaUltimaAct:data.fechaUltimaAct});
+  }
+
+  addSavingAccount(data:any){
+    return this.http.post(environment.ACCOUNTS_URL + this.data.idToken, {idCliente:data.idCliente, numeroCuenta:data.numeroCuenta, saldo:data.saldo, estado: data.estado, fechaUltimaAct:data.fechaUltimaAct});
+  }
+
+  getClients(){
+    return this.http.get(environment.CLIENTS_URL);
+  }
+
+  addClient(data:any){
+    return this.http.post(environment.CLIENTS_URL, {idCliente:data.idCliente, nombre:data.nombre, direccion:data.direccion, edad: data.edad, genero:data.genero});
   }
 
 }

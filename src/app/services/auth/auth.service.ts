@@ -9,7 +9,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(email:string, password:string){
+  login(email:any, password:any){
     return this.http.post(environment.AUTH_URL, {email:email, password:password, returnSecureToken:true});
   }
 }
