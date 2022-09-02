@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -102,5 +103,7 @@
       }
     }
   },
-  "defaultProject": "avantika-test"
+  "cli": {
+    "analytics": "d2064b76-9d34-4a6b-b64d-d9359f5ca80a"
+  }
 }

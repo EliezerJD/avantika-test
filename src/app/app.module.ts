@@ -10,6 +10,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SavingsAccountsComponent } from './components/savings-accounts/savings-accounts.component';
 import { MovementHistoryComponent } from './components/movement-history/movement-history.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MovementHistoryComponent } from './components/movement-history/movement
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
