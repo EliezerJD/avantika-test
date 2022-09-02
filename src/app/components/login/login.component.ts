@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   }
 
   async login(){
-    //if(!this.loginForm.valid)return;
     const data = this.loginForm.value;
     await this.auth.login(data.email, data.password).subscribe(res => {
       sessionStorage.setItem(environment.USER_SECRET_KEY, JSON.stringify(res));

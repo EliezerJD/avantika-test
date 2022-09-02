@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  currentView = 0;
+  currentView = 2;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -20,7 +20,6 @@ export class DashboardComponent implements OnInit {
   logout(){
     sessionStorage.clear();
     this.router.navigate(['/login']);
-
   }
 
 }

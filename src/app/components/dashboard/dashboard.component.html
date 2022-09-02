@@ -8,10 +8,16 @@
       <div class="menu-inner-shadow"></div>
       <ul class="menu-inner py-1">
       <!-- Dashboard -->
+        <li class="menu-item" [ngClass]="{'active': currentView === 2}">
+          <a class="menu-link" (click)="changeCurrentView(2)">
+            <i class='menu-icon tf-icons bx bx-user'></i>
+            <div data-i18n="Analytics">Clientes</div>
+          </a>
+        </li>
         <li class="menu-item" [ngClass]="{'active': currentView === 0}">
           <a class="menu-link" (click)="changeCurrentView(0)">
-            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-            <div data-i18n="Analytics">Dashboard</div>
+            <i class="menu-icon tf-icons bx bx-wallet-alt"></i>
+            <div data-i18n="Analytics">Cuentas de ahorro</div>
           </a>
         </li>
         <li class="menu-item" [ngClass]="{'active': currentView === 1}">
@@ -36,13 +42,16 @@
       </nav>
       <!-- / Navbar -->
       <!-- Content wrapper -->
-      <div class="content-wrapper" >
-        <div *ngIf="currentView==0; else history">
+      <div class="content-wrapper" [ngSwitch]="currentView">
+        <div *ngSwitchCase="0">
           <app-savings-accounts></app-savings-accounts>
         </div>
-        <ng-template #history>
+        <div *ngSwitchCase="1">
           <app-movement-history></app-movement-history>
-        </ng-template>
+        </div>
+        <div *ngSwitchCase="2">
+          <app-clients></app-clients>
+        </div>
         <!-- / Content -->
       </div>
       <footer class="footer bg-light">

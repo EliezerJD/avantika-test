@@ -103,7 +103,8 @@
       }
     }
   },
+  "defaultProject": "avantika-test",
   "cli": {
-    "analytics": "d2064b76-9d34-4a6b-b64d-d9359f5ca80a"
+    "analytics": "0fd10c7c-17c3-4d22-abcc-0f51686a9c7f"
   }
 }

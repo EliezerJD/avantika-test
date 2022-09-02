@@ -1,7 +1,7 @@
 <div class="container-xxl flex-grow-1 container-p-y" >
   <!-- Hoverable Table rows -->
   <div class="card">
-    <h5 class="card-header">Cuentas de ahorro</h5>
+    <h5 class="card-header">Cuentas de ahorro <button class="btn rounded-pill btn-success left" (click)="open(addSavingAccount, null, null)">Agregar cuenta de ahorro</button></h5>
     <div class="table-responsive text-nowrap">
       <table class="table table-hover center">
         <thead>
@@ -24,7 +24,7 @@
               <span *ngSwitchCase="'Inactiva'" class="badge bg-label-warning me-1">{{acc.estado}}</span>
               <span *ngSwitchDefault class="badge bg-label-primary me-1">{{acc.estado || '-'}}</span>
             </td>
-            <td><button class="btn rounded-pill btn-outline-success">Depósito</button>&nbsp;<button class="btn rounded-pill btn-outline-danger">Retiro</button></td>
+            <td><button class="btn rounded-pill btn-outline-success" (click)="open(addRecord, 'Deposito', acc.numeroCuenta)">Depósito</button>&nbsp;<button class="btn rounded-pill btn-outline-danger" (click)="open(addRecord, 'Retiro', acc.numeroCuenta)">Retiro</button></td>
             <td>{{acc.fechaUltimaAct || '-'}}</td>
           </tr> 
         </tbody>
@@ -32,3 +32,83 @@
     </div>
   </div>
 </div>
+
+<ng-template #addSavingAccount let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Crear cuenta de ahorro</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body" style="text-align: center">
+    <form [formGroup]="addAccountForm">
+      <div class="d-flex justify-content-between">
+        <label class="form-label" for="id-cliente">Id Cliente</label>
+      </div>
+      <div class="input-group input-group-merge">
+        <input formControlName="idCliente" type="text" class="form-control"/>
+      </div>
+      <div class="d-flex justify-content-between fix">
+        <label class="form-label" for="id-cliente">Numero de cuenta</label>
+      </div>
+      <div class="input-group input-group-merge">
+        <input formControlName="numeroCuenta" type="text" class="form-control"/>
+      </div>
+      <div class="d-flex justify-content-between fix">
+        <label class="form-label" for="id-cliente">Saldo</label>
+      </div>
+      <div class="input-group input-group-merge">
+        <input formControlName="saldo" type="number" class="form-control"/>
+      </div>
+      <div class="d-flex justify-content-between fix">
+        <label class="form-label" for="id-cliente">Estado</label>
+      </div>
+      <div class="input-group input-group-merge">
+        <select class="form-select" formControlName="estado">
+          <option value="Activa">Activa</option>
+          <option value="Inactiva">Inactiva</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-success" (click)="modal.close('Save click')">Guardar</button>
+  </div>
+</ng-template>
+
+<ng-template #addRecord let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{tipo}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body" style="text-align: center">
+    <form [formGroup]="recordForm">
+      <div class="d-flex justify-content-between">
+        <label class="form-label" for="id-cliente">Usuario</label>
+      </div>
+      <div class="input-group input-group-merge">
+        <input formControlName="usuario" type="text" class="form-control"/>
+      </div>
+      <div class="d-flex justify-content-between fix">
+        <label class="form-label" for="id-cliente">Numero de cuenta</label>
+      </div>
+      <div class="input-group input-group-merge">
+        <input formControlName="numeroCuenta" type="text" class="form-control"/>
+      </div>
+      <div class="d-flex justify-content-between fix">
+        <label class="form-label" for="id-cliente">Monto</label>
+      </div>
+      <div class="input-group input-group-merge">
+        <input formControlName="monto" type="number" class="form-control"/>
+      </div>
+      <div class="d-flex justify-content-between fix">
+        <label class="form-label" for="id-cliente">Terminal</label>
+      </div>
+      <div class="input-group input-group-merge">
+        <input formControlName="terminal" type="text" class="form-control"/>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="tipo=='Deposito'" type="button" class="btn btn-outline-success" (click)="modal.close('Save click')" [disabled]="recordForm.invalid">Depositar</button>
+    <button *ngIf="tipo=='Retiro'" type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')" [disabled]="recordForm.invalid">Retirar</button>
+  </div>
+</ng-template>
