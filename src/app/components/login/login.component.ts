@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { Router } from '@angular/router';
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     password:['',[Validators.required]]
   });
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router:Router) { }
+  constructor(private fb: UntypedFormBuilder, private auth: AuthService, private router:Router) { }
 
   ngOnInit(): void {
 

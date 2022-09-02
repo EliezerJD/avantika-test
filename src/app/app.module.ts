@@ -11,6 +11,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SavingsAccountsComponent } from './components/savings-accounts/savings-accounts.component';
 import { MovementHistoryComponent } from './components/movement-history/movement-history.component';
 import { ClientsComponent } from './components/clients/clients.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ClientsComponent } from './components/clients/clients.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
